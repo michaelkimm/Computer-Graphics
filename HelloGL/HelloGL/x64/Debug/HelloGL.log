@@ -1,2 +1,21 @@
-﻿  HelloGL.cpp
-  HelloGL.vcxproj -> C:\Users\Admin\Desktop\HelloGL\\bin\x64\HelloGL.exe
+﻿  Enemy.cpp
+c:\unity\test\computer-graphics\hellogl\hellogl\enemy.cpp(31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\enemy.cpp(42): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\enemy.cpp(43): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  GameObject.cpp
+  HelloGL.cpp
+c:\unity\test\computer-graphics\hellogl\hellogl\hellogl.cpp(36): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\hellogl.cpp(118): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\hellogl.cpp(125): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  MoveObj.cpp
+  MYGLFunction.cpp
+c:\unity\test\computer-graphics\hellogl\hellogl\myglfunction.cpp(14): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\myglfunction.cpp(13): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\myglfunction.cpp(27): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\myglfunction.cpp(28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\myglfunction.cpp(29): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  Player.cpp
+c:\unity\test\computer-graphics\hellogl\hellogl\player.cpp(41): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  StaticObj.cpp
+  Generating Code...
+  HelloGL.vcxproj -> C:\unity\Test\Computer-Graphics\HelloGL\\bin\x64\HelloGL.exe

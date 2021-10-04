@@ -2,10 +2,20 @@
 //
 
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
+
 #include ".\include\GL\freeglut.h"
+#include "Player.h"
+#include "Enemy.h"
+
 
 // 전역 변수
 int Width = 600, Height = 600;
+
+Player* ptPlayer = NULL;
+Enemy** dptEnemys = NULL;
+int enemyCount = 3;
 
 // 콜백 함수 선언
 void Render();					// 그리기 용도로 사용할 콜백 함수
@@ -16,8 +26,15 @@ void Reshape(int w, int h);		// 윈도우 크기가 변경된 경우 호출되�
 
 */
 
+void Initialize();
+void KeyboardCallback(int key, int x, int y);
+void Timer(int id);
+Vector3 GetRandomPose(float left, float right, float top, float bottom);
+
 int main(int argc, char **argv)
 {
+	srand(time(NULL));
+
 	// Freeglut 초기화
 	glutInit(&argc, argv);
 
@@ -34,10 +51,78 @@ int main(int argc, char **argv)
 	glutDisplayFunc(Render);
 	glutReshapeFunc(Reshape);
 
+	// 객체 생성
+	Initialize();
+
+	// 타이머 생성
+	glutTimerFunc(100, Timer, 1);
+
+	// 키보드 함수
+	glutSpecialFunc(KeyboardCallback);
+	
 	// 메세지 처리 루프 진입
 	glutMainLoop();
 	
 	return 0;
+}
+
+void KeyboardCallback(int key, int x, int y)
+{
+	switch (key)
+	{
+	case GLUT_KEY_LEFT:
+		ptPlayer->Move(-1, 0, 0);
+		break;
+	case GLUT_KEY_RIGHT:
+		ptPlayer->Move(1, 0, 0);
+		break;
+	case GLUT_KEY_DOWN:
+		ptPlayer->Move(0, -1, 0);
+		break;
+	case GLUT_KEY_UP:
+		ptPlayer->Move(0, 1, 0);
+		break;
+	}
+	glutPostRedisplay();
+
+}
+
+void Timer(int id)
+{
+	switch (id)
+	{
+	case 1:
+		for (int i = 0; i < enemyCount; i++)
+		{
+			dptEnemys[i]->Chase();
+		}
+		glutPostRedisplay();
+		glutTimerFunc(100, Timer, 1);
+		break;
+	default:
+		break;
+	}
+}
+
+void Initialize()
+{
+	float playerSpeed = 5.0f;
+	float playerSize = 20.0f;
+	ptPlayer = new Player(Width * 0.5f, Height * 0.5f, 0, 1, 0, 0, playerSpeed, playerSize);
+
+	float enemySpeed = 3.0f;
+	float enemySize = 15.0f;
+	dptEnemys = new Enemy*[enemyCount];
+	for (int i = 0; i < enemyCount; i++)
+	{
+		dptEnemys[i] = new Enemy(GetRandomPose(0, Width, Height, 0), Vector3(1, 0, 0), enemySpeed, enemySize);
+		dptEnemys[i]->SetChaseTarget(ptPlayer);
+	}
+}
+
+Vector3 GetRandomPose(float left, float right, float top, float bottom)
+{
+	return Vector3(rand() % Width, rand() % Height, 0);
 }
 
 void Render()
@@ -56,26 +141,16 @@ void Render()
 	// 관측 공간 지정
 	glMatrixMode(GL_PROJECTION);			// 관측 공간을 지정하기 위해 projection 행렬을 선택
 	glLoadIdentity();						// Projection 행렬에 단위행렬 지정
-	gluOrtho2D(-10.0, 10.0, -10.0, 10.0);	// 무한히 넓은 공간 중에서 관측할 영역 지정
+	gluOrtho2D(0, Width, 0, Height);	// 무한히 넓은 공간 중에서 관측할 영역 지정
 
 	// 모델링 좌표계 선택
 	glMatrixMode(GL_MODELVIEW);
 
-	// 빨간 삼각형 그리기
-	glColor3d(1.0, 0.0, 0.0);
-	glBegin(GL_TRIANGLES);
-	glVertex2d(-2.0, -1.0);
-	glVertex2d(2.0, -1.0);
-	glVertex2d(0.0, 3.0);
-	glEnd();
-
-	// 파란 삼각형 그리기
-	glColor3d(0.0, 0.0, 1.0);
-	glBegin(GL_TRIANGLES);
-	glVertex2d(-2.0, 1.0);
-	glVertex2d(2.0, -3.0);
-	glVertex2d(2.0, 1.0);
-	glEnd();
+	ptPlayer->Draw();
+	for (int i = 0; i < enemyCount; i++)
+	{
+		dptEnemys[i]->Draw();
+	}
 
 	// 칼라 버퍼 교환
 	glutSwapBuffers();
