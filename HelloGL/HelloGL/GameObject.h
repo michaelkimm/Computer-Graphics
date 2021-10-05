@@ -35,6 +35,7 @@ public:
 
 	virtual void Draw() = 0;
 	virtual bool CheckCollision(GameObject* targetObj);
+	void SizeUp(float plusValue);
 };
 
 #endif

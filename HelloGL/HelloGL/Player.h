@@ -24,6 +24,7 @@ public:
 
 	virtual void Draw() override;
 	virtual bool CheckCollision(GameObject* target) override;
+	virtual void Use(Fruit* ptFruit) override;
 };
 
 #endif

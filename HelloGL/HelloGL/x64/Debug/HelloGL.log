@@ -1,5 +1,25 @@
-﻿  HelloGL.cpp
-c:\unity\test\computer-graphics\hellogl\hellogl\hellogl.cpp(37): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\unity\test\computer-graphics\hellogl\hellogl\hellogl.cpp(140): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\unity\test\computer-graphics\hellogl\hellogl\hellogl.cpp(147): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  Enemy.cpp
+c:\unity\test\computer-graphics\hellogl\hellogl\enemy.cpp(31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\enemy.cpp(47): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\enemy.cpp(48): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  Fruit.cpp
+c:\unity\test\computer-graphics\hellogl\hellogl\fruit.cpp(11): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  GameManager.cpp
+  GameObject.cpp
+  HelloGL.cpp
+c:\unity\test\computer-graphics\hellogl\hellogl\hellogl.cpp(41): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\hellogl.cpp(173): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\hellogl.cpp(181): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\hellogl.cpp(187): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  MoveObj.cpp
+  MYGLFunction.cpp
+c:\unity\test\computer-graphics\hellogl\hellogl\myglfunction.cpp(14): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\myglfunction.cpp(13): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\myglfunction.cpp(27): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\myglfunction.cpp(28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\unity\test\computer-graphics\hellogl\hellogl\myglfunction.cpp(29): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  Player.cpp
+c:\unity\test\computer-graphics\hellogl\hellogl\player.cpp(38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  StaticObj.cpp
+  Generating Code...
   HelloGL.vcxproj -> C:\unity\Test\Computer-Graphics\HelloGL\\bin\x64\HelloGL.exe

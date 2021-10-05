@@ -10,8 +10,15 @@ bool GameObject::CheckCollision(GameObject* targetObj)
 
 void GameObject::SetDirection(float dirX, float dirY, float dirZ)
 {
+	if (isDead)
+		return;
 	float magnitude = sqrtf(powf(dirX, 2) + powf(dirY, 2) + powf(dirZ, 2));
 	dir.x = dirX / magnitude;
 	dir.y = dirY / magnitude;
 	dir.z = dirZ / magnitude;
+}
+
+void GameObject::SizeUp(float plusValue)
+{
+	size += plusValue;
 }

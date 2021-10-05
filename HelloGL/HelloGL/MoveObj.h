@@ -4,6 +4,7 @@
 #define MOVEOBJ
 
 #include "GameObject.h"
+class Fruit;
 
 class MoveObj : public GameObject
 {
@@ -20,15 +21,12 @@ public:
 	{
 	}
 
-	void Move()
-	{
-		pose.x += speed * GetDirection().x;
-		pose.y += speed * GetDirection().y;
-		pose.z += speed * GetDirection().z;
-	}
-
+	void Move();
 	virtual void Draw() = 0;
 	virtual bool CheckCollision(GameObject* targetObj);
+	virtual void Use(Fruit* ptFruit);
+	void SpeedUp(float plusVaule);
+
 };
 
 #endif

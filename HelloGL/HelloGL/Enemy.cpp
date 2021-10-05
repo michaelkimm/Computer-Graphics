@@ -54,3 +54,4 @@ void Enemy::SetChaseTarget(GameObject* target)
 {
 	chaseTarget = target;
 }
+

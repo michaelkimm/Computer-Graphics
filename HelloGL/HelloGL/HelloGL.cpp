@@ -8,6 +8,8 @@
 #include ".\include\GL\freeglut.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Fruit.h"
+#include "GameManager.h"
 
 
 // 전역 변수
@@ -15,7 +17,9 @@ int Width = 600, Height = 600;
 
 Player* ptPlayer = NULL;
 Enemy** dptEnemys = NULL;
+Fruit** dptFruits = NULL;
 int enemyCount = 3;
+int fruitCount = 8;
 
 // 콜백 함수 선언
 void Render();					// 그리기 용도로 사용할 콜백 함수
@@ -41,6 +45,7 @@ int main(int argc, char **argv)
 
 	// 윈도우 크기 지정
 	glutInitWindowSize(Width, Height);
+	GameManager::Instance()->SetViewPort(0, Width, Height, 0);
 
 	// 칼라 버퍼의 속성 지정
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);	// GLUT_DOUBLE: 버퍼를 두개 쓴다는 뜻
@@ -62,6 +67,8 @@ int main(int argc, char **argv)
 	// 키보드 함수
 	glutSpecialFunc(KeyboardCallback);
 	
+	GameManager::Instance()->GameStart();
+
 	// 메세지 처리 루프 진입
 	glutMainLoop();
 	
@@ -122,10 +129,34 @@ void CheckCollision()
 		{
 			// 플레이어 죽음!
 			ptPlayer->SetDead(true);
+			GameManager::Instance()->GameEnd();
+			GameManager::Instance()->printResult(false);
+		}
+
+		for (int j = 0; j < fruitCount; j++)
+		{
+			if (dptFruits[j] == NULL)
+				continue;
+
+			if (dptEnemys[i]->CheckCollision(dptFruits[j]))
+			{
+				dptEnemys[i]->Use(dptFruits[j]);
+				dptFruits[j] = NULL;
+			}
 		}
 	}
-	
 
+	for (int i = 0; i < fruitCount; i++)
+	{
+		if (dptFruits[i] == NULL)
+			continue;
+
+		if (dptFruits[i]->CheckCollision(ptPlayer))
+		{
+			ptPlayer->Use(dptFruits[i]);
+			dptFruits[i] = NULL;
+		}
+	}
 }
 
 void Initialize()
@@ -141,6 +172,13 @@ void Initialize()
 	{
 		dptEnemys[i] = new Enemy(GetRandomPose(0, Width, Height, 0), Vector3(1, 0, 0), enemySpeed, enemySize);
 		dptEnemys[i]->SetChaseTarget(ptPlayer);
+	}
+
+	float fruitSize = 7.5f;
+	dptFruits = new Fruit*[fruitCount];
+	for (int i = 0; i < fruitCount; i++)
+	{
+		dptFruits[i] = new Fruit(GetRandomPose(0, Width, Height, 0), GetRandomPose(0, Width, Height, 0), fruitSize, 2);
 	}
 }
 
@@ -174,6 +212,17 @@ void Render()
 	for (int i = 0; i < enemyCount; i++)
 	{
 		dptEnemys[i]->Draw();
+	}
+	for (int i = 0; i < fruitCount; i++)
+	{
+		if (dptFruits[i] == NULL)
+			continue;
+		dptFruits[i]->Draw();
+	}
+
+	if (GameManager::Instance()->DoesTimePassed())
+	{
+		GameManager::Instance()->printResult(true);
 	}
 
 	// 칼라 버퍼 교환

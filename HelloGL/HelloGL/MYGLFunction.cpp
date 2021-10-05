@@ -29,3 +29,13 @@ void DrawTriangle(float x, float y, float z, float sideLength)
 	glVertex3f(x + sideLength * 0.5f, y - sideLength * sqrt(3) * 0.5f * 1 / 3, z);
 	glEnd();
 }
+
+void DrawCube(float x, float y, float z, float width, float depth, float height)
+{
+	glBegin(GL_POLYGON);
+	glVertex3f(x - width * 0.5f, y - depth * 0.5f, z);
+	glVertex3f(x + width * 0.5f, y - depth * 0.5f, z);
+	glVertex3f(x + width * 0.5f, y + depth * 0.5f, z);
+	glVertex3f(x - width * 0.5f, y + depth * 0.5f, z);
+	glEnd();
+}

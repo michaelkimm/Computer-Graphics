@@ -1,9 +1,8 @@
 #include "Player.h"
+#include "Fruit.h"
 
 void Player::Draw()
 {
-	
-
 	glPushMatrix();
 	{
 		glTranslatef(pose.x, pose.y, pose.z);
@@ -47,4 +46,10 @@ void Player::Draw()
 bool Player::CheckCollision(GameObject* targetObj)
 {
 	return MoveObj::CheckCollision(targetObj);
+}
+
+void Player::Use(Fruit* ptFruit)
+{
+	ptFruit->SizeUp(this);
+	collectedFruit++;
 }
