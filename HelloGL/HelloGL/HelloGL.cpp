@@ -30,6 +30,7 @@ void Initialize();
 void KeyboardCallback(int key, int x, int y);
 void Timer(int id);
 Vector3 GetRandomPose(float left, float right, float top, float bottom);
+void CheckCollision();
 
 int main(int argc, char **argv)
 {
@@ -55,7 +56,8 @@ int main(int argc, char **argv)
 	Initialize();
 
 	// 타이머 생성
-	glutTimerFunc(100, Timer, 1);
+	glutTimerFunc(100, Timer, 1);	// 이동 함수
+	glutTimerFunc(100, Timer, 2);	// 충돌 판정
 
 	// 키보드 함수
 	glutSpecialFunc(KeyboardCallback);
@@ -71,16 +73,20 @@ void KeyboardCallback(int key, int x, int y)
 	switch (key)
 	{
 	case GLUT_KEY_LEFT:
-		ptPlayer->Move(-1, 0, 0);
+		ptPlayer->SetDirection(-1, 0, 0);
+		ptPlayer->Move();
 		break;
 	case GLUT_KEY_RIGHT:
-		ptPlayer->Move(1, 0, 0);
+		ptPlayer->SetDirection(1, 0, 0);
+		ptPlayer->Move();
 		break;
 	case GLUT_KEY_DOWN:
-		ptPlayer->Move(0, -1, 0);
+		ptPlayer->SetDirection(0, -1, 0);
+		ptPlayer->Move();
 		break;
 	case GLUT_KEY_UP:
-		ptPlayer->Move(0, 1, 0);
+		ptPlayer->SetDirection(0, 1, 0);
+		ptPlayer->Move();
 		break;
 	}
 	glutPostRedisplay();
@@ -99,9 +105,27 @@ void Timer(int id)
 		glutPostRedisplay();
 		glutTimerFunc(100, Timer, 1);
 		break;
+	case 2:
+		CheckCollision();
+		glutTimerFunc(100, Timer, 2);
+		break;
 	default:
 		break;
 	}
+}
+
+void CheckCollision()
+{
+	for (int i = 0; i < enemyCount; i++)
+	{
+		if (dptEnemys[i]->CheckCollision(ptPlayer))
+		{
+			// 플레이어 죽음!
+			ptPlayer->SetDead(true);
+		}
+	}
+	
+
 }
 
 void Initialize()

@@ -7,15 +7,15 @@ void Player::Draw()
 	glPushMatrix();
 	{
 		glTranslatef(pose.x, pose.y, pose.z);
-		if (dir.x == -1)
+		if (GetDirection().x == -1)
 		{
 			glScalef(-1, 1, 1);
 		}
-		else if (dir.y == 1)
+		else if (GetDirection().y == 1)
 		{
 			glRotatef(90, 0, 0, 1);
 		}
-		else if (dir.y == -1)
+		else if (GetDirection().y == -1)
 		{
 			glRotatef(-90, 0, 0, 1);
 		}
@@ -46,4 +46,5 @@ void Player::Draw()
 
 bool Player::CheckCollision(GameObject* targetObj)
 {
+	return MoveObj::CheckCollision(targetObj);
 }

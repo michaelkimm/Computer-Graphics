@@ -10,12 +10,12 @@ private:
 
 
 public:
-	StaticObj(float posX, float posY, float posZ, float dirX, float dirY, float dirZ)
-		: GameObject(posX, posY, posZ, dirX, dirY, dirZ)
+	StaticObj(float posX, float posY, float posZ, float dirX, float dirY, float dirZ, float size)
+		: GameObject(posX, posY, posZ, dirX, dirY, dirZ, size)
 	{
 	}
-	StaticObj(Vector3 pose, Vector3 dir)
-		: GameObject(pose, dir)
+	StaticObj(Vector3 pose, Vector3 dir, float size)
+		: GameObject(pose, dir, size)
 	{
 	}
 

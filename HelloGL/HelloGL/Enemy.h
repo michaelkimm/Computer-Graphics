@@ -7,16 +7,15 @@
 class Enemy : public MoveObj
 {
 private:
-	float size = 15;
 	GameObject* chaseTarget = NULL;
 
 public:
 	Enemy(float posX, float posY, float posZ, float dirX, float dirY, float dirZ, float speed, float size)
-		: MoveObj(posX, posY, posZ, dirX, dirY, dirZ, speed), size(size)
+		: MoveObj(posX, posY, posZ, dirX, dirY, dirZ, speed, size)
 	{
 	}
 	Enemy(Vector3 pose, Vector3 dir, float speed, float size)
-		: MoveObj(pose, dir, speed)
+		: MoveObj(pose, dir, speed, size)
 	{
 	}
 

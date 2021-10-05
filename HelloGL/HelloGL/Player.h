@@ -8,15 +8,14 @@ class Player : public MoveObj
 {
 private:
 	int collectedFruit = 0;
-	float size = 20.0f;
 
 public:
 	Player(float posX, float posY, float posZ, float dirX, float dirY, float dirZ, float speed, float size)
-		: MoveObj(posX, posY, posZ, dirX, dirY, dirZ, speed), size(size)
+		: MoveObj(posX, posY, posZ, dirX, dirY, dirZ, speed, size)
 	{
 	}
 	Player(Vector3 pose, Vector3 dir, float speed, float size)
-		: MoveObj(pose, dir, speed)
+		: MoveObj(pose, dir, speed, size)
 	{
 	}
 
@@ -24,6 +23,7 @@ public:
 	int SetCollectedFruit(int plusValue) { collectedFruit += plusValue; }
 
 	virtual void Draw() override;
+	virtual bool CheckCollision(GameObject* target) override;
 };
 
 #endif

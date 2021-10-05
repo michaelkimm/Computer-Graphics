@@ -35,7 +35,7 @@ void Enemy::Draw()
 
 bool Enemy::CheckCollision(GameObject* targetObj)
 {
-
+	return MoveObj::CheckCollision(targetObj);
 }
 
 void Enemy::Chase()
@@ -46,8 +46,8 @@ void Enemy::Chase()
 	Vector3 chasePose = chaseTarget->GetPose();
 	float chaseDirX = (chasePose.x - pose.x) > 0 ? 1 : -1;
 	float chaseDirY = (chasePose.y - pose.y) > 0 ? 1 : -1;
-
-	Move(chaseDirX, chaseDirY, 0);
+	SetDirection(chaseDirX, chaseDirY, 0);
+	Move();
 }
 
 void Enemy::SetChaseTarget(GameObject* target)
